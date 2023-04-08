@@ -36,8 +36,7 @@ public class ProductServiceImp implements ProductService {
 
     public List<ProductResponse> getProducts(int pageNum, int pageSize){
 
-     // int pageSize =5;
-      //int pageNum =1;
+     //PageNumber initial value is 0
         Pageable pageable = PageRequest.of(pageNum,pageSize);
         Page<Product> pageProduct = productRepo.findAll(pageable);
         List<Product> productList = pageProduct.getContent();
