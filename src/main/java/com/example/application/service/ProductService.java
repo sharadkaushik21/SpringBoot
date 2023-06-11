@@ -13,6 +13,4 @@ public interface ProductService {
 
     ProductResponse createProduct(ProductResponse productResponse);
 
-
-
 }
