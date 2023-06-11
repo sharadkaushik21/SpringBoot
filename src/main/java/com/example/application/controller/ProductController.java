@@ -21,21 +21,22 @@ public class ProductController {
         // URL  localhost:8080/product
     }
 
-    @GetMapping("/products/pagenumber/{pageNum}/pagesize/{pageSize}")
-    public List<ProductResponse> getPagedProduct(@PathVariable int pageNum, @PathVariable int pageSize){
+   // @GetMapping("/products/pagenumber/{pageNum}/pagesize/{pageSize}")
+   // public List<ProductResponse> getPagedProduct(@PathVariable int pageNum, @PathVariable int pageSize){
 
-        List<ProductResponse> product = productService.getProducts(pageNum, pageSize);
-        return product;
+       // List<ProductResponse> product = productService.getProducts(pageNum, pageSize);
+       // return product;
         //URL localhost:8080/products/pagenumber/0/pagesize/3
-    }
+   // }  Had to commented out this API sortBy additional parameter also used in getProducts method.
 
     //Different way of a paged controller
     @GetMapping("/products")
     public List<ProductResponse> getNewPagedProduct(
-            @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber ,
-         @RequestParam( value = "pageSize", defaultValue ="3", required = false ) Integer pageSize){
+            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber ,
+         @RequestParam( value = "pageSize", defaultValue ="3", required = false ) Integer pageSize,
+         @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy  ){
 
-        List<ProductResponse> product = productService.getProducts(pageNumber, pageSize);
+        List<ProductResponse> product = productService.getProducts(pageNumber, pageSize, sortBy);
         return product;
         // Basic URL localhost:8080/products
         //Paged URL localhost:8080/products?pageNumber=1&pageSize=3
@@ -49,5 +50,7 @@ public class ProductController {
         return product;
         //URL localhost:8080/product/create
     }
+
+
 
 }
