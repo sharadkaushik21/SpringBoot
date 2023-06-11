@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,10 +35,10 @@ public class ProductServiceImp implements ProductService {
       return productResponseList;
   }
 
-    public List<ProductResponse> getProducts(int pageNum, int pageSize){
+    public List<ProductResponse> getProducts(int pageNum, int pageSize, String sortBy){
 
      //PageNumber initial value is 0
-        Pageable pageable = PageRequest.of(pageNum,pageSize);
+        Pageable pageable = PageRequest.of(pageNum,pageSize, Sort.by(sortBy) );
         Page<Product> pageProduct = productRepo.findAll(pageable);
         List<Product> productList = pageProduct.getContent();
 

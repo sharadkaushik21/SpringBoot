@@ -9,8 +9,10 @@ public interface ProductService {
 
     List<ProductResponse> getAllProduct();
 
-    List<ProductResponse> getProducts(int pageNum, int pageSize);
+    List<ProductResponse> getProducts(int pageNum, int pageSize, String sortBy);
 
     ProductResponse createProduct(ProductResponse productResponse);
+
+
 
 }
